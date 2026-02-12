@@ -782,7 +782,7 @@ export default function App() {
 
         {/* Copyright Notice */}
         <div className="fixed bottom-8 left-1/2 -translate-x-1/2 text-xs font-tech text-[var(--text-primary)] opacity-40">
-          © 2026 UIDAI Hackathon | Team Winter Is Ours
+          © 2026 UIDAI Hackathon | Krrish Rastogi
         </div>
       </div>
     </div>
