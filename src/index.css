@@ -1,0 +1,93 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Vogue Avant Garde", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Adobe Garamond Pro", ui-serif, Georgia, serif;
+  --font-tech: "Inter", ui-sans-serif, system-ui, sans-serif;
+}
+
+:root {
+  --bg-primary: #ffffff;
+  --text-primary: #1a1a1a;
+  --accent-color: #ff671f; /* Indian Saffron */
+
+  --bg-dark: #0f0f0f;
+  --text-dark: #e0e0e0;
+  --accent-dark: #ff9933;
+}
+
+.dark {
+  --bg-primary: var(--bg-dark);
+  --text-primary: var(--text-dark);
+  --accent-color: var(--accent-dark);
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  text-align: justify;
+}
+
+/* --- MAP STYLES (Fixed for proper fitting) --- */
+.india-map-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  overflow: hidden; /* Prevent overflow issues */
+}
+
+.india-map-container svg {
+  height: auto;
+  width: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  display: block;
+  margin: 0 auto;
+  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.1));
+  object-fit: contain; /* Ensure the entire SVG is visible */
+}
+
+/* Ensure proper scaling on smaller screens */
+@media (max-width: 768px) {
+  .india-map-container svg {
+    width: 95%;
+    height: auto;
+  }
+}
+
+/* Base State for all paths */
+.india-map-container path {
+  fill: #e5e5e5; /* Default light grey */
+  stroke: #a3a3a3;
+  stroke-width: 0.5;
+  transition: all 0.4s ease-in-out;
+  vector-effect: non-scaling-stroke;
+}
+
+.dark .india-map-container path {
+  fill: #2a2a2a; /* Darker grey for dark mode */
+  stroke: #555;
+}
+
+/* Active State - FORCED to Saffron */
+.india-map-container path.active-state {
+  fill: var(--accent-color) !important;
+  stroke: var(--bg-primary) !important;
+  stroke-width: 2px !important;
+  filter: drop-shadow(0 0 10px rgba(255, 103, 31, 0.5));
+  z-index: 100;
+}
+
+/* Visited/Inactive State */
+.india-map-container path.visited-state {
+  fill: #d4d4d4 !important;
+  stroke: #999 !important;
+  opacity: 0.5;
+}
+
+.dark .india-map-container path.visited-state {
+  fill: #444 !important;
+  stroke: #666 !important;
+}
