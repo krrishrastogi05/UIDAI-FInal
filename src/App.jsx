@@ -14,7 +14,7 @@ import {
   Layers,
   FileText,
   ShieldAlert,
-  Activity
+  Activity,
 } from "lucide-react";
 
 // --- EXPANDED DATASET & NARRATIVE ---
@@ -205,7 +205,8 @@ const slides = [
         id: "IN-UP",
         name: "Uttar Pradesh",
         stat: "Volume Leader",
-        insight: "Highest absolute volume, driven by adult demographic corrections.",
+        insight:
+          "Highest absolute volume, driven by adult demographic corrections.",
       },
       {
         id: "IN-MH",
@@ -235,13 +236,15 @@ const slides = [
         id: "IN-MN",
         name: "Manipur",
         stat: "0.013 Intensity (Max)",
-        insight: "High Updates, Low Enrolment. 45x the median national update intensity.",
+        insight:
+          "High Updates, Low Enrolment. 45x the median national update intensity.",
       },
       {
         id: "IN-ML",
         name: "Meghalaya",
         stat: "High Enrolment",
-        insight: "Disproportionately high fresh enrolment rates compared to mature states.",
+        insight:
+          "Disproportionately high fresh enrolment rates compared to mature states.",
       },
     ],
   },
@@ -271,16 +274,16 @@ const slides = [
   {
     id: 14,
     type: "chart",
-    chartType: "bar_vertical",
+    chartType: "image",
     title: "INSIGHT #2: THE NOVEMBER PANIC",
     intro:
       "We detected a massive 'Cliff Effect' in November. This was not organic demand; it was Policy-Induced Anxiety.",
-    chartData: [
-      { label: "Normal Avg", value: 20, color: "bg-gray-500", text: "~20k" },
-      { label: "Nov Peak", value: 100, color: "bg-red-600", text: "140k" },
-      { label: "Post-Nov", value: 5, color: "bg-blue-600", text: "-97%" },
-    ],
-    footer: "Districts like Thane and Pune jumped 7x month-over-month, then crashed."
+    chartData: {
+      src: "/nov-chart.jpeg",
+      alt: "November Panic Chart",
+    },
+    footer:
+      "Districts like Thane and Pune jumped 7x month-over-month, then crashed.",
   },
   {
     id: 15,
@@ -317,7 +320,8 @@ const slides = [
         id: "IN-AS",
         name: "Dima Hasao (Assam)",
         stat: "0.0% Compliance",
-        insight: "Sustained failure to capture mandatory biometrics for over 3 quarters.",
+        insight:
+          "Sustained failure to capture mandatory biometrics for over 3 quarters.",
       },
       {
         id: "IN-BR",
@@ -329,7 +333,8 @@ const slides = [
         id: "IN-ML",
         name: "E.W. Khasi Hills",
         stat: "Remote Disconnect",
-        insight: "Tribal belts seeing adult enrollment but zero child lifecycle management.",
+        insight:
+          "Tribal belts seeing adult enrollment but zero child lifecycle management.",
       },
     ],
   },
@@ -472,23 +477,30 @@ const ChartComponent = ({ type, data, footer }) => {
     return (
       <div className="w-full flex flex-col items-center justify-center">
         <div className="flex items-end justify-center gap-4 md:gap-12 h-64 w-full max-w-4xl border-b-2 border-white/20 pb-4 px-4">
-            {data.map((d, i) => (
-                <div key={i} className="flex flex-col items-center gap-2 group flex-1">
-                    <div className="font-bold text-2xl mb-2 opacity-0 group-hover:opacity-100 transition-opacity">{d.text}</div>
-                    <motion.div 
-                        initial={{ height: 0 }}
-                        animate={{ height: `${d.value}%` }}
-                        transition={{ duration: 1, delay: i * 0.2 }}
-                        className={`w-full max-w-[100px] rounded-t-lg shadow-lg ${d.color} relative hover:opacity-90 transition-all`}
-                    ></motion.div>
-                    <div className="text-center font-tech text-xs md:text-sm uppercase tracking-wider mt-2 opacity-80">{d.label}</div>
-                </div>
-            ))}
+          {data.map((d, i) => (
+            <div
+              key={i}
+              className="flex flex-col items-center gap-2 group flex-1"
+            >
+              <div className="font-bold text-2xl mb-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                {d.text}
+              </div>
+              <motion.div
+                initial={{ height: 0 }}
+                animate={{ height: `${d.value}%` }}
+                transition={{ duration: 1, delay: i * 0.2 }}
+                className={`w-full max-w-[100px] rounded-t-lg shadow-lg ${d.color} relative hover:opacity-90 transition-all`}
+              ></motion.div>
+              <div className="text-center font-tech text-xs md:text-sm uppercase tracking-wider mt-2 opacity-80">
+                {d.label}
+              </div>
+            </div>
+          ))}
         </div>
         {footer && (
-            <div className="mt-8 text-lg italic text-center opacity-80 max-w-2xl bg-white/5 p-4 rounded-lg border-l-4 border-red-500">
-                {footer}
-            </div>
+          <div className="mt-8 text-lg italic text-center opacity-80 max-w-2xl bg-white/5 p-4 rounded-lg border-l-4 border-red-500">
+            {footer}
+          </div>
         )}
       </div>
     );
@@ -513,7 +525,7 @@ const IndiaMapSlide = ({ data, stepIndex }) => {
     const paths = mapRef.current.querySelectorAll("path");
     paths.forEach((p) => {
       p.setAttribute("class", "");
-      p.style.fill = ""; 
+      p.style.fill = "";
     });
 
     data.mapSteps.forEach((step, index) => {
@@ -635,7 +647,9 @@ const ContentSlide = ({ data }) => (
           transition={{ delay: i * 0.1 }}
           className="border-l-4 border-[var(--text-primary)] pl-8 py-2 hover:border-[var(--accent-color)] transition-colors"
         >
-          <h3 className="text-xl md:text-2xl font-bold font-display mb-2">{p.head}</h3>
+          <h3 className="text-xl md:text-2xl font-bold font-display mb-2">
+            {p.head}
+          </h3>
           <p className="text-base md:text-lg opacity-80 font-body leading-relaxed">
             {p.body}
           </p>
@@ -684,7 +698,11 @@ const ChartSlide = ({ data }) => (
       {data.intro}
     </p>
     <div className="flex justify-center items-center w-full min-h-[400px] bg-white/5 rounded-2xl p-10 border border-[var(--text-primary)]/10 shadow-inner">
-      <ChartComponent type={data.chartType} data={data.chartData} footer={data.footer} />
+      <ChartComponent
+        type={data.chartType}
+        data={data.chartData}
+        footer={data.footer}
+      />
     </div>
   </div>
 );
@@ -700,7 +718,9 @@ const MatrixSlide = ({ data }) => (
           key={i}
           className={`p-10 rounded-xl flex flex-col justify-center items-center text-center text-white shadow-xl ${m.color} hover:scale-105 transition-transform duration-300`}
         >
-          <div className="text-3xl font-bold font-display mb-4 tracking-wide">{m.label}</div>
+          <div className="text-3xl font-bold font-display mb-4 tracking-wide">
+            {m.label}
+          </div>
           <div className="text-lg opacity-95 font-body leading-snug">
             {m.desc}
           </div>
