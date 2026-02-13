@@ -14,6 +14,7 @@ import {
   Layers,
   FileText,
   ShieldAlert,
+  Activity
 } from "lucide-react";
 
 // --- EXPANDED DATASET & NARRATIVE ---
@@ -85,7 +86,7 @@ const slides = [
     ],
   },
 
-  // --- SECTION 3: THE CLEANING PIPELINE (DETAILED) ---
+  // --- SECTION 3: THE CLEANING PIPELINE ---
   {
     id: 5,
     type: "stats",
@@ -142,9 +143,45 @@ const slides = [
     ],
   },
 
-  // --- SECTION 4: MACRO PATTERNS ---
+  // --- SECTION 4: FEATURE ENGINEERING ---
   {
     id: 8,
+    type: "stats",
+    title: "FEATURE ENGINEERING",
+    intro:
+      "We derived high-dimensional features to quantify ecosystem health beyond simple volume counts.",
+    stats: [
+      { label: "Total Updates", value: "Overall Activity" },
+      { label: "Bio Compliance (5-17)", value: "Policy Adherence" },
+      { label: "Demo Volatility", value: "Churn Proxy" },
+      { label: "Update Intensity", value: "Ops Load / Enrol" },
+    ],
+  },
+  {
+    id: 9,
+    type: "content",
+    title: "RISK FRAMING FRAMEWORK",
+    intro:
+      "We defined 'Risk' not just as anomalies, but as specific operational failures.",
+    points: [
+      {
+        head: "Low Compliance",
+        body: "Districts failing to capture mandatory biometrics (MBU) for children, risking future service exclusion.",
+      },
+      {
+        head: "High Volatility",
+        body: "Districts showing erratic, non-organic spikes in demographic updates (often linked to fraud or panic).",
+      },
+      {
+        head: "High Update Intensity",
+        body: "Districts where the administrative load per enrolment is disproportionately high, signaling stress.",
+      },
+    ],
+  },
+
+  // --- SECTION 5: MACRO PATTERNS ---
+  {
+    id: 10,
     type: "chart",
     chartType: "pie",
     title: "SERVICE MIX REALITY",
@@ -157,7 +194,7 @@ const slides = [
     ],
   },
   {
-    id: 9,
+    id: 11,
     type: "map",
     mapMode: "concentration",
     title: "GEOGRAPHIC SKEW",
@@ -168,8 +205,7 @@ const slides = [
         id: "IN-UP",
         name: "Uttar Pradesh",
         stat: "Volume Leader",
-        insight:
-          "Highest absolute volume, driven by adult demographic corrections.",
+        insight: "Highest absolute volume, driven by adult demographic corrections.",
       },
       {
         id: "IN-MH",
@@ -186,9 +222,9 @@ const slides = [
     ],
   },
 
-  // --- SECTION 5: DEEP INSIGHTS - NORTHEAST ---
+  // --- SECTION 6: DEEP INSIGHTS - NORTHEAST ---
   {
-    id: 10,
+    id: 12,
     type: "map",
     mapMode: "northeast",
     title: "INSIGHT #1: THE NORTHEAST PARADOX",
@@ -199,20 +235,18 @@ const slides = [
         id: "IN-MN",
         name: "Manipur",
         stat: "0.013 Intensity (Max)",
-        insight:
-          "High Updates, Low Enrolment. 45x the median national update intensity.",
+        insight: "High Updates, Low Enrolment. 45x the median national update intensity.",
       },
       {
         id: "IN-ML",
         name: "Meghalaya",
         stat: "High Enrolment",
-        insight:
-          "Disproportionately high fresh enrolment rates compared to mature states.",
+        insight: "Disproportionately high fresh enrolment rates compared to mature states.",
       },
     ],
   },
   {
-    id: 11,
+    id: 13,
     type: "content",
     title: "ROOT CAUSE: MANIPUR VS MEGHALAYA",
     intro:
@@ -233,23 +267,23 @@ const slides = [
     ],
   },
 
-  // --- SECTION 6: DEEP INSIGHTS - NOVEMBER SURGE ---
+  // --- SECTION 7: DEEP INSIGHTS - NOVEMBER SURGE ---
   {
-    id: 12,
+    id: 14,
     type: "chart",
-    chartType: "image",
+    chartType: "bar_vertical",
     title: "INSIGHT #2: THE NOVEMBER PANIC",
     intro:
       "We detected a massive 'Cliff Effect' in November. This was not organic demand; it was Policy-Induced Anxiety.",
-    chartData: {
-      src: "/nov-chart.jpeg",
-      alt: "November Panic Chart",
-    },
-    footer:
-      "Districts like Thane and Pune jumped 7x month-over-month, then crashed.",
+    chartData: [
+      { label: "Normal Avg", value: 20, color: "bg-gray-500", text: "~20k" },
+      { label: "Nov Peak", value: 100, color: "bg-red-600", text: "140k" },
+      { label: "Post-Nov", value: 5, color: "bg-blue-600", text: "-97%" },
+    ],
+    footer: "Districts like Thane and Pune jumped 7x month-over-month, then crashed."
   },
   {
-    id: 13,
+    id: 15,
     type: "content",
     title: "ROOT CAUSE: THE POLICY COLLISION",
     intro:
@@ -270,9 +304,9 @@ const slides = [
     ],
   },
 
-  // --- SECTION 7: DEEP INSIGHTS - INVISIBLE CHILD ---
+  // --- SECTION 8: DEEP INSIGHTS - INVISIBLE CHILD ---
   {
-    id: 14,
+    id: 16,
     type: "map",
     mapMode: "crisis",
     title: "INSIGHT #3: THE INVISIBLE COHORT",
@@ -283,8 +317,7 @@ const slides = [
         id: "IN-AS",
         name: "Dima Hasao (Assam)",
         stat: "0.0% Compliance",
-        insight:
-          "Sustained failure to capture mandatory biometrics for over 3 quarters.",
+        insight: "Sustained failure to capture mandatory biometrics for over 3 quarters.",
       },
       {
         id: "IN-BR",
@@ -296,13 +329,12 @@ const slides = [
         id: "IN-ML",
         name: "E.W. Khasi Hills",
         stat: "Remote Disconnect",
-        insight:
-          "Tribal belts seeing adult enrollment but zero child lifecycle management.",
+        insight: "Tribal belts seeing adult enrollment but zero child lifecycle management.",
       },
     ],
   },
   {
-    id: 15,
+    id: 17,
     type: "content",
     title: "ROOT CAUSE: INSTITUTIONAL ABANDONMENT",
     intro:
@@ -323,32 +355,32 @@ const slides = [
     ],
   },
 
-  // --- SECTION 8: TECH STACK ---
+  // --- SECTION 9: TECHNICAL ML IMPLEMENTATION ---
   {
-    id: 16,
+    id: 18,
     type: "content",
-    title: "HOW WE FOUND IT: THE TECH STACK",
+    title: "TECHNICAL ARCHITECTURE",
     intro:
-      "We moved beyond basic statistics to deploy unsupervised Machine Learning models.",
+      "We deployed unsupervised learning to move beyond simple thresholding.",
     points: [
       {
-        head: "Feature Engineering",
-        body: "Created 'Volume Lag' to detect sudden velocity changes (The Panic Spikes) and 'Population Normalization' to compare small states (Manipur) to giants (UP).",
+        head: "Behavioral Segmentation (K-Means)",
+        body: "Instead of finding anomalies, K-Means groups districts with similar behavioural patterns. It finds natural segments (e.g., 'High Churn', 'Stable') rather than just outliers.",
       },
       {
-        head: "Isolation Forest & LOF",
-        body: "Used Isolation Forest to find global point anomalies and Local Outlier Factor (LOF) to find districts deviating from their immediate neighbors.",
+        head: "Structural Anomaly Detection (Isolation Forest)",
+        body: "A label-free model that looks at all features together. It detects multi-dimensional anomalies (e.g., a district with normal volume but abnormal update ratios) that simple Z-scores miss.",
       },
       {
-        head: "Graph Analysis (NetworkX)",
-        body: "Modeled districts as nodes. Detected 'Synchronized Spikes' where geographically distant districts showed identical update patterns.",
+        head: "Graph & Time Series",
+        body: "Utilized univariate/bivariate analysis for temporal spikes and Graph Analysis to find synchronized volatility across unconnected districts.",
       },
     ],
   },
 
-  // --- SECTION 9: STRATEGY ---
+  // --- SECTION 10: STRATEGY ---
   {
-    id: 17,
+    id: 19,
     type: "matrix",
     title: "STRATEGIC SEGMENTATION",
     intro: "A Triage-Based Resource Allocation Framework.",
@@ -376,7 +408,7 @@ const slides = [
     ],
   },
   {
-    id: 18,
+    id: 20,
     type: "content",
     title: "FINAL RECOMMENDATIONS",
     intro: "Moving from Reactive Panic to Predictive Governance.",
@@ -396,7 +428,7 @@ const slides = [
     ],
   },
   {
-    id: 19,
+    id: 21,
     type: "title",
     title: "THANK YOU",
     subtitle: "DATA HACKATHON 2026",
@@ -435,10 +467,24 @@ const ChartComponent = ({ type, data, footer }) => {
     );
   }
 
-  if (type === "image") {
+  // Vertical Bar Chart for Nov Surge
+  if (type === "bar_vertical") {
     return (
       <div className="w-full flex flex-col items-center justify-center">
-        <img src={data.src} alt={data.alt} className="max-w-full h-auto rounded-lg shadow-lg" />
+        <div className="flex items-end justify-center gap-4 md:gap-12 h-64 w-full max-w-4xl border-b-2 border-white/20 pb-4 px-4">
+            {data.map((d, i) => (
+                <div key={i} className="flex flex-col items-center gap-2 group flex-1">
+                    <div className="font-bold text-2xl mb-2 opacity-0 group-hover:opacity-100 transition-opacity">{d.text}</div>
+                    <motion.div 
+                        initial={{ height: 0 }}
+                        animate={{ height: `${d.value}%` }}
+                        transition={{ duration: 1, delay: i * 0.2 }}
+                        className={`w-full max-w-[100px] rounded-t-lg shadow-lg ${d.color} relative hover:opacity-90 transition-all`}
+                    ></motion.div>
+                    <div className="text-center font-tech text-xs md:text-sm uppercase tracking-wider mt-2 opacity-80">{d.label}</div>
+                </div>
+            ))}
+        </div>
         {footer && (
             <div className="mt-8 text-lg italic text-center opacity-80 max-w-2xl bg-white/5 p-4 rounded-lg border-l-4 border-red-500">
                 {footer}
@@ -447,41 +493,6 @@ const ChartComponent = ({ type, data, footer }) => {
       </div>
     );
   }
-
-  // Vertical Bar Chart for Nov Surge - Fixed for reliability
-  if (type === "bar_vertical") {
-    return (
-      <div className="w-full flex flex-col items-center justify-center">
-        <div className="flex items-end justify-center gap-4 md:gap-12 h-64 w-full max-w-4xl border-b-2 border-white/20 pb-4 px-4">
-          {data.map((d, i) => (
-            <div
-              key={i}
-              className="flex flex-col items-center gap-2 group flex-1"
-            >
-              <div className="font-bold text-2xl mb-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                {d.text}
-              </div>
-              <motion.div
-                initial={{ height: 0 }}
-                animate={{ height: `${d.value}%` }}
-                transition={{ duration: 1, delay: i * 0.2 }}
-                className={`w-full max-w-[100px] rounded-t-lg shadow-lg ${d.color} relative hover:opacity-90 transition-all`}
-              ></motion.div>
-              <div className="text-center font-tech text-xs md:text-sm uppercase tracking-wider mt-2 opacity-80">
-                {d.label}
-              </div>
-            </div>
-          ))}
-        </div>
-        {footer && (
-          <div className="mt-8 text-lg italic text-center opacity-80 max-w-2xl bg-white/5 p-4 rounded-lg border-l-4 border-red-500">
-            {footer}
-          </div>
-        )}
-      </div>
-    );
-  }
-
   return null;
 };
 
@@ -502,7 +513,7 @@ const IndiaMapSlide = ({ data, stepIndex }) => {
     const paths = mapRef.current.querySelectorAll("path");
     paths.forEach((p) => {
       p.setAttribute("class", "");
-      p.style.fill = "";
+      p.style.fill = ""; 
     });
 
     data.mapSteps.forEach((step, index) => {
@@ -624,9 +635,7 @@ const ContentSlide = ({ data }) => (
           transition={{ delay: i * 0.1 }}
           className="border-l-4 border-[var(--text-primary)] pl-8 py-2 hover:border-[var(--accent-color)] transition-colors"
         >
-          <h3 className="text-xl md:text-2xl font-bold font-display mb-2">
-            {p.head}
-          </h3>
+          <h3 className="text-xl md:text-2xl font-bold font-display mb-2">{p.head}</h3>
           <p className="text-base md:text-lg opacity-80 font-body leading-relaxed">
             {p.body}
           </p>
@@ -675,11 +684,7 @@ const ChartSlide = ({ data }) => (
       {data.intro}
     </p>
     <div className="flex justify-center items-center w-full min-h-[400px] bg-white/5 rounded-2xl p-10 border border-[var(--text-primary)]/10 shadow-inner">
-      <ChartComponent
-        type={data.chartType}
-        data={data.chartData}
-        footer={data.footer}
-      />
+      <ChartComponent type={data.chartType} data={data.chartData} footer={data.footer} />
     </div>
   </div>
 );
@@ -695,9 +700,7 @@ const MatrixSlide = ({ data }) => (
           key={i}
           className={`p-10 rounded-xl flex flex-col justify-center items-center text-center text-white shadow-xl ${m.color} hover:scale-105 transition-transform duration-300`}
         >
-          <div className="text-3xl font-bold font-display mb-4 tracking-wide">
-            {m.label}
-          </div>
+          <div className="text-3xl font-bold font-display mb-4 tracking-wide">{m.label}</div>
           <div className="text-lg opacity-95 font-body leading-snug">
             {m.desc}
           </div>
@@ -816,7 +819,7 @@ export default function App() {
 
         {/* Copyright Notice */}
         <div className="fixed bottom-8 left-1/2 -translate-x-1/2 text-xs font-tech text-[var(--text-primary)] opacity-40">
-          © 2026 UIDAI Hackathon | Krrish Rastogi
+          © 2026 UIDAI Hackathon | Team Winter Is Ours
         </div>
       </div>
     </div>
